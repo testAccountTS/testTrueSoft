@@ -1,0 +1,11 @@
+.THIS .clip{
+    white-space: nowrap;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.THIS .img{
+    width: 170 !important;
+    height: 125 !important;
+}

@@ -1,0 +1,30 @@
+<aura:component controller="OrderCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute  name="searchKey"       type="String"      default=""/>
+    <aura:attribute  name="valueInput"      type="String"      default=""/>
+    <aura:attribute  name="listProducts"    type="Object[]"    default=""/>
+    <aura:attribute  name="listProductsAll" type="Object[]"    default=""/> 
+    <aura:attribute  name="listProductsCatr"    type="Object[]"    default=""/>
+
+    <aura:handler event="c:OrderFilterEvent" action="{!c.handleFilterEvent}"/> 
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="c-container">
+        <lightning:layout>
+            <lightning:layoutItem size="12">
+                <div class="settings-box " style="display:flex; vertical-align: top;">
+                    <span onkeypress="{!c.keyCheck}" style="width: 100%;"> 
+                        <lightning:input class="search_input slds-text-heading_medium" variant = "label-hidden" name="search" placeholder="Search" value="{! v.searchKey }"/>
+                    </span>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+        <lightning:layout multipleRows="true" class="slds-p-top_medium">
+            <aura:iteration items="{! v.listProducts }" var="item">
+                <c:OrderProduct  product = "{! item }"
+                                 productsCart = "{! v.listProductsCatr }"/>
+            </aura:iteration>
+        </lightning:layout>
+    </div>
+</aura:component>

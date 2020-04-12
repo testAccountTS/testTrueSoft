@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:registerEvent name="EventOrderButton" type="c:EventOrderButton"/>
+
+    <lightning:button variant="brand" label="Order Management" title="" onclick="{! c.handleOrderManagment }" />
+</aura:component>

@@ -1,0 +1,28 @@
+<aura:component controller="OrderCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute  name="mapFilterOptions"  type="List"/>
+    <aura:attribute  name="objFilterOptions"  type="Object"/>
+    
+    <aura:registerEvent name="OrderFilterEvent" type="c:OrderFilterEvent"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="c-container" >
+        <div class="slds-p-around_large" style="height: 100vh; background-color: #FFF; padding-top:40px;">
+            <lightning:layout multipleRows="true">
+                <aura:iteration items="{! v.mapFilterOptions }" var="item"  indexVar="key">
+                    <lightning:layoutItem size="12" padding="around-small">
+                        <div class="custom-box">    
+                            <lightning:checkboxGroup class="slds-text-body_regular" 
+                                                     aura:id="{! item.key }"
+                                                     name="{! item.key }"
+                                                     label="{! item.key }"
+                                                     options="{! item.value }"
+                                                     value=""
+                                                     onchange="{! c.handleChange }"/>
+                        </div>
+                    </lightning:layoutItem>
+                </aura:iteration>
+            </lightning:layout>        
+        </div>
+    </div>
+</aura:component>

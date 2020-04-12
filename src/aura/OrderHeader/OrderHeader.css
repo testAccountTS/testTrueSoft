@@ -1,0 +1,14 @@
+.THIS .wrapper {
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS .tabstyle{
+    background-color: #FFF;
+    height: 100px;
+}
+.THIS .account_attr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,38 @@
+<aura:component controller="OrderCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="product"      type="Object"   default=""/>
+    <aura:attribute name="isOpenDetail" type="Boolean"  default=""/>
+    <aura:attribute name="prefixURL"    type="String"   default="/sfc/servlet.shepherd/version/download/"/>
+    <aura:attribute name="productsCart" type="Object[]" default=""/>
+
+    <lightning:notificationsLibrary aura:id="notifLib" />
+    
+    <aura:registerEvent name="OrderCartEvent" type="c:OrderCartEvent"/>
+    
+    <c:OrderProductDetail isOpen = '{! v.isOpenDetail }' 
+                          detailPtoduct = '{! v.product }' />
+        
+    <lightning:layoutItem size="6" class="slds-p-horizontal_small slds-p-bottom_small">
+        <div class="slds-grid slds-grid_vertical slds-p-top_medium" style="background-color: #FFF; border-radius: 4px;">
+            <div class="slds-col slds-text-heading_medium slds-align_absolute-center slds-p-top_medium">
+                <span><lightning:formattedText value="{! v.product.Name }" /></span>
+            </div>
+            <div class="slds-col slds-text-body_regular slds-p-around_medium">
+                <p class="slds-align_absolute-center"><img src="{!v.prefixURL + v.product.Image__c}" style="height: 125px !important;"/></p>
+                <p class="clip"> {! v.product.Description__c }</p>
+                <p>Type: <lightning:formattedText value="{! v.product.Type__c }" /></p>
+                <p>Family: <lightning:formattedText value="{! v.product.Family__c }" /></p>
+            </div>
+
+            <div class="slds-col slds-p-around_large">
+                <div class="slds-grid slds-gutters" >
+                    <div class="slds-col">
+                        <span><lightning:button class="slds-button_stretch" variant="brand" label="Detail" onclick="{! c.handleDetail }"/></span>
+                    </div>
+                    <div class="slds-col">
+                        <span><lightning:button class="slds-button_stretch" variant="brand" label="Cart" onclick="{! c.handleCart }"/></span>
+                    </div>
+                </div>
+            </div>                    
+        </div>
+    </lightning:layoutItem>
+</aura:component>

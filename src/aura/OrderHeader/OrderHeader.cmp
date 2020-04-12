@@ -1,0 +1,37 @@
+<aura:component controller="OrderCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="accountName"       type="String"   default=""/> 
+    <aura:attribute name="accountNumber"     type="String"   default=""/>
+    <aura:attribute name="recordId"          type="String" />
+    <aura:attribute name="idAccount"         type="String"   default=""/> 
+    <aura:attribute name="isOpenAddProducts" type="Boolean"  default="false"/>
+    <aura:attribute name="isOpenCart"        type="Boolean"  default="false"/>
+    <aura:attribute name="isManager"         type="Boolean"  default="false"/>
+
+    <aura:handler event="c:EventOrderButton"  action="{!c.handleOrderButtonEvent}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <c:OrderAddProducts aura:id = "addProductCmp" 
+                        isOpen  = "{! v.isOpenAddProducts }" 
+                        accountId = "{! v.idAccount }" />
+    
+    <c:OrderCart  isOpen    = "{! v.isOpenCart }" 
+                  accountId = "{! v.idAccount }"/>
+
+    <div class="wrapper">
+      <div class="slds-grid tabstyle">
+          <div class="slds-col slds-size_1-of-3  account_attr">
+            <lightning:formattedText class="slds-text-heading_large account_attr" value="{! v.accountName }" />
+          </div>
+          <div class="slds-col slds-size_1-of-3  account_attr">  
+            <lightning:formattedText class="slds-text-heading_large" value="{! v.accountNumber }" />
+          </div>
+          <div class="slds-col slds-size_1-of-3  account_attr">
+            <aura:if isTrue="{!v.isManager}">
+              <span><lightning:button variant="brand" label="Create Product" title="" onclick="{! c.handleCreateProduct }" /></span>
+            </aura:if>
+            <span style="padding-left: 10px;"><lightning:button variant="brand" label="Cart" title="" onclick="{! c.handleOpenCart }" /></span>
+          </div>
+        </div>
+      </div>    
+</aura:component>
